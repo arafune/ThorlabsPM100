@@ -1,9 +1,9 @@
 # -*- coding: utf8 -*-
 import sys
 
-__version__ = '1.2.2'
+__version__ = "1.2.2"
 
-__long_description__ = u"""\
+__long_description__ = """\
 Overview
 ========
 
@@ -16,7 +16,7 @@ Installation
 
 To install the ThorlabsPM100 driver, download the package and run the command::
 
-   python setup.py install
+    python setup.py install
 
 You can also directly move the ThorlabsPM100 to a location
 that Python can import from (directory in which scripts

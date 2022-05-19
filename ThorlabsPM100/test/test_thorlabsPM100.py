@@ -1,26 +1,30 @@
 from __future__ import print_function
+
 import unittest
 
 from .. import ThorlabsPM100
 
+
 class FakeSCPI(object):
     _record = {}
+
     def write(self, val):
-        if ' ' in val:
-            cmd, vals = val.split(' ')
+        if " " in val:
+            cmd, vals = val.split(" ")
             self._record[cmd] = vals
         else:
-#            print('WRITE', val)
+            #            print('WRITE', val)
             self._record[val] = True
 
     def query(self, val):
-        assert val[-1]=='?'
-        out = self._record.get(val[:-1], '')
-#        print('ASK', val,'...', out)
+        assert val[-1] == "?"
+        out = self._record.get(val[:-1], "")
+        #        print('ASK', val,'...', out)
         return out
 
 
-initial_value = {'READ':"1.23"}
+initial_value = {"READ": "1.23"}
+
 
 class TestThorlabsPM100(unittest.TestCase):
     def setUp(self):
@@ -38,8 +42,8 @@ class TestThorlabsPM100(unittest.TestCase):
 
     def test_call(self):
         self.power_meter.system.beeper.immediate()
-        self.assertTrue(self.inst._record['System:Beeper:IMMediate'])
+        self.assertTrue(self.inst._record["System:Beeper:IMMediate"])
 
     def test_some_function(self):
-        self.power_meter.sense.power.dc.unit = 'DBM'
-        self.assertEqual(self.inst._record['Sense:Power:Dc:UNIT'], 'DBM')
+        self.power_meter.sense.power.dc.unit = "DBM"
+        self.assertEqual(self.inst._record["Sense:Power:Dc:UNIT"], "DBM")

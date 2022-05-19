@@ -1,13 +1,14 @@
 from __future__ import print_function
 
 from time import sleep
+
 from numpy import array
 
-from ThorlabsPM100 import ThorlabsPM100, USBTMC
+from ThorlabsPM100 import USBTMC, ThorlabsPM100
 
 inst = USBTMC()
 
-power_meter = ThorlabsPM100(inst = inst)
+power_meter = ThorlabsPM100(inst=inst)
 
 power_meter.system.beeper.immediate()
 
@@ -18,7 +19,7 @@ print("Wavelength       :", power_meter.sense.correction.wavelength)
 print("Power range limit:", power_meter.sense.power.dc.range.upper)
 
 print("Set range auto and wait 500ms    ...")
-sleep(.5)
+sleep(0.5)
 power_meter.sense.power.dc.range.auto = "ON"
 
 print("Power range limit:", power_meter.sense.power.dc.range.upper)
@@ -26,7 +27,7 @@ print("Power range limit:", power_meter.sense.power.dc.range.upper)
 print("Set bandwidth to High")
 power_meter.input.pdiode.filter.lpass.state = 0
 
-print("Average per mesure :", power_meter.sense.average.count) 
+print("Average per mesure :", power_meter.sense.average.count)
 print("Set average to 1 ...")
 power_meter.sense.average.count = 1
 
@@ -82,4 +83,3 @@ print("Set average to 1 ...")
 power_meter.sense.average.count = 1
 
 power_meter.system.beeper.immediate()
-
